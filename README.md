@@ -61,3 +61,39 @@ Handlers are stored as raw strings and accessed through the runtime API.
 - Attribute values may contain vowels.
 
 Validation errors are collected and reported during runtime initialization.
+
+---
+
+## parsers/
+
+### html6-parser.js
+
+`html6-parser.js` provides a DOM‑based parser for HTML6 source text. It converts raw HTML6 markup into a structured AST‑like object for tooling, editors, and validators.
+
+The parser performs:
+
+- **Document parsing** using `DOMParser` or a fallback HTML document.
+- **Root detection**, supporting both `<html6>` and `<html>`.
+- **AST walking**, extracting:
+  - styles from `<styl>`
+  - scripts from `<scrpt>`
+  - metadata from `<mt>`
+  - servers and handlers from `<srv>` and `<nrq>`
+  - body content from `<bdy>`
+
+The output includes:
+
+- `head` — structured lists of styles, scripts, metadata, and servers  
+- `body` — the raw innerHTML of `<bdy>`  
+- `styles`, `scripts`, `servers`, `metadata` — flattened lists for tooling  
+- `meta` — document statistics such as length, line count, and root tag name  
+
+Each node includes a `loc` field reserved for future source‑location tracking.
+
+---
+
+## examples/
+
+### simple-html6.html
+
+A minimal example demonstrating the structure of an HTML6 document, including `<hd>`, `<bdy>`, shorthand tags, metadata, and runtime behavior.
