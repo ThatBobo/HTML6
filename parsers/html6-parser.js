@@ -102,7 +102,7 @@ function handleHead(hd, out) {
     out.metadata.push(node)
   })
   
-  // <srv> + <onrq>
+  // <srv> + <nrq>
   hd.querySelectorAll("srv").forEach(srv => {
     const server = {
       id: attr(srv, "srvd"),
@@ -112,11 +112,11 @@ function handleHead(hd, out) {
       loc: nodeLocation(srv)
     }
     
-    srv.querySelectorAll("onrq").forEach(onrq => {
+    srv.querySelectorAll("nrq").forEach(nrq => {
       server.handlers.push({
-        path: attr(onrq, "pth"),
-        raw: onrq.textContent.trim(),
-        loc: nodeLocation(onrq)
+        path: attr(nrq, "pth"),
+        raw: nrq.textContent.trim(),
+        loc: nodeLocation(nrq)
       })
     })
     
